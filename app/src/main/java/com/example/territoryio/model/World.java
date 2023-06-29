@@ -6,17 +6,25 @@ public class World {
     public static final int HEIGHT = 2000;
 
     // オブジェクト用変数
+    private Player player;
 
 
     public World() {
         // オブジェクトの生成
+        player = new Player(100, 100);
 
     }
 
     public void move() {
         // オブジェクトの更新
+        player.move();
 
     }
 
     //Getter
+
+
+    public Player getPlayer() {
+        return player;
+    }
 }

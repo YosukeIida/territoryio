@@ -34,4 +34,28 @@ public class MainActivity extends BaseActivity {
         mainView.draw(world);
 
     }
+
+    // イベントリスナー
+    public boolean onTouchEvent(MotionEvent event) {
+        double tapDownX;
+        double tapDownY = 0.0;
+        double tapUpX = 0.0;
+        double tapUpY = 0.0;
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                tapDownX = event.getX();
+                tapDownY = event.getY();
+//                System.out.println("x" +tapDownX);
+//                System.out.println("y" +tapDownY);
+                break;
+            case MotionEvent.ACTION_UP:
+                tapUpX = event.getX();
+                tapUpY = event.getY();
+
+
+                break;
+
+        }
+        return true;
+    }
 }

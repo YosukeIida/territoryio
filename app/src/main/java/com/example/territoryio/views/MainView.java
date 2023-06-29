@@ -14,10 +14,14 @@ import com.example.territoryio.MainActivity;
 import com.example.territoryio.R;
 import com.example.territoryio.helpers.BaseView;
 import com.example.territoryio.model.GameCharacter;
+import com.example.territoryio.model.Player;
 import com.example.territoryio.model.World;
 
 
 public class MainView extends BaseView {
+
+    public static final int WINDOW_WIDTH=680;
+    public static final int WINDOW_HEIGHT=1540;
 
     MainActivity mainActivity;
     ConstraintLayout constraintLayout;
@@ -28,6 +32,7 @@ public class MainView extends BaseView {
 
     // 画像用変数
     Bitmap backGroundImage;
+    Bitmap playerImage;
 
     // ビュー用変数
     ImageViewBuilder imageViewBuilder;
@@ -39,6 +44,7 @@ public class MainView extends BaseView {
 
         // 画像の読み込み
         backGroundImage = loadImage(R.drawable.background);
+        playerImage = loadImage(R.drawable.character_monster_slime_red);
 
 
         // ビューの生成・登録
@@ -51,6 +57,22 @@ public class MainView extends BaseView {
     public void draw(World world) {
         // スクロール
 
+        Player player = world.getPlayer();
+
+        if (player.getX() < WINDOW_HEIGHT/2) {
+            canvasBaseX = 0;
+        } else if (player.getX() < World.WIDTH-WINDOW_HEIGHT/2) {
+            canvasBaseX = player.getX() - WINDOW_HEIGHT/2;
+        } else {
+            canvasBaseX = World.WIDTH-WINDOW_HEIGHT;
+        }
+        if (player.getY() < WINDOW_WIDTH/2) {
+            canvasBaseY = 0;
+        } else if (player.getY() < World.HEIGHT-WINDOW_WIDTH/2) {
+            canvasBaseY = player.getY()-WINDOW_WIDTH/2;
+        } else {
+            canvasBaseY = World.HEIGHT-WINDOW_WIDTH;
+        }
 
         // ImageViewBuilderリセット
         imageViewBuilder.reset();
@@ -60,6 +82,9 @@ public class MainView extends BaseView {
 
         // 背景を表示
         drawImage(0, 0, World.WIDTH, World.HEIGHT, backGroundImage, imageView);
+
+        // playerを表示
+        drawPlayer(player);
 
     }
 
@@ -81,6 +106,12 @@ public class MainView extends BaseView {
             int ySize = c.getySize();
             drawImage(x, y, xSize, ySize, image, imageView);
         }
+    }
+
+    private void drawPlayer(Player player) {
+//        Bitmap playerImage = playerImage;
+        drawCharacter(player, playerImage);
+
     }
 }
 

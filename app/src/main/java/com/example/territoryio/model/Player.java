@@ -31,6 +31,25 @@ public class Player extends GameCharacter {
             y = World.HEIGHT - ySize;
         }
 
+        switch (direction) {
+            case 0:
+                xSpeed=0;
+                ySpeed=3;
+                break;
+            case 1:
+                xSpeed=-3;
+                ySpeed=0;
+                break;
+            case 2:
+                xSpeed=0;
+                ySpeed=-3;
+                break;
+            case 3:
+                xSpeed=3;
+                ySpeed=0;
+                break;
+        }
+
 
     }
 
