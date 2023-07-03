@@ -1,6 +1,9 @@
 package com.example.territoryio.controller;
 
+import android.util.Log;
+
 public class TouchDisplay {
+    private static String TAG = "myapp";
     private float downX;
     private float downY;
     private float upX;
@@ -25,23 +28,27 @@ public class TouchDisplay {
 
 
     // Getter
-    public float getSwipeX() { return (upX - downX); }
-    public float getSwipeY() { return (upY - downY); }
+    public float getSwipeX() {
+        Log.i("myapp", "x" + (upX - downX));
+        return (upX - downX); }
+    public float getSwipeY() {
+        Log.i("myapp", "y" + (upY - downY));
+        return (upY - downY); }
 
 
     // method
     public int getDirection() {
-        if (getSwipeY() > getSwipeX()) {
+        if ( Math.abs(getSwipeY()) > Math.abs(getSwipeX())) {
             if (getSwipeY() < 0) {
                 return 0;
             } else {
-                return 3;
+                return 2;
             }
         } else {
             if (getSwipeX() < 0) {
                 return 1;
             } else {
-                return 2;
+                return 3;
             }
         }
     }

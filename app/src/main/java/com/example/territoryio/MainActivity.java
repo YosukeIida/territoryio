@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MotionEvent;
 
+import com.example.territoryio.controller.TouchDisplay;
 import com.example.territoryio.helpers.BaseActivity;
 import com.example.territoryio.model.World;
 import com.example.territoryio.views.MainView;
@@ -16,6 +17,8 @@ public class MainActivity extends BaseActivity {
 
     MainView mainView;
 
+    TouchDisplay touchDisplay;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         gravityEnabled = true;
@@ -26,6 +29,7 @@ public class MainActivity extends BaseActivity {
 
         world = new World();
         mainView = new MainView(this);
+        touchDisplay = new TouchDisplay();
 
     }
 
@@ -37,24 +41,16 @@ public class MainActivity extends BaseActivity {
 
     // イベントリスナー
     public boolean onTouchEvent(MotionEvent event) {
-        double tapDownX;
-        double tapDownY = 0.0;
-        double tapUpX = 0.0;
-        double tapUpY = 0.0;
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                tapDownX = event.getX();
-                tapDownY = event.getY();
-//                System.out.println("x" +tapDownX);
-//                System.out.println("y" +tapDownY);
+                touchDisplay.setDownX(event.getX());
+                touchDisplay.setDownY(event.getY());
                 break;
             case MotionEvent.ACTION_UP:
-                tapUpX = event.getX();
-                tapUpY = event.getY();
-
-
+                touchDisplay.setUpX(event.getX());
+                touchDisplay.setUpY(event.getY());
+                world.getPlayer().changeDirection(touchDisplay.getDirection());
                 break;
-
         }
         return true;
     }
