@@ -33,6 +33,7 @@ public class MainView extends BaseView {
     // 画像用変数
     Bitmap backGroundImage;
     Bitmap playerImage;
+    Bitmap tileLightBlueImage;
 
     // ビュー用変数
     ImageViewBuilder imageViewBuilder;
@@ -45,6 +46,7 @@ public class MainView extends BaseView {
         // 画像の読み込み
         backGroundImage = loadImage(R.drawable.background);
         playerImage = loadImage(R.drawable.character_monster_slime_red);
+        tileLightBlueImage = loadImage(R.drawable.tile_lightblue);
 
 
         // ビューの生成・登録
@@ -84,6 +86,8 @@ public class MainView extends BaseView {
         drawImage(0, 0, World.WIDTH, World.HEIGHT, backGroundImage, imageView);
 
         // playerを表示
+
+
         drawPlayer(player);
 
     }

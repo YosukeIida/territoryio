@@ -11,6 +11,7 @@ public class GameCharacter {
     protected int ySize = 0;
     protected int xSpeed = 0;
     protected int ySpeed = 0;
+    protected int id = 0;
     protected boolean activeFlag = true;
 
     protected List<GameCharacter> xMaxLimits=new LinkedList<GameCharacter>();
@@ -52,6 +53,11 @@ public class GameCharacter {
     public int getLeft() {
         return x;
     }
+    public int getCenterX() { return x + xSize/2; }
+    public int getCenterY() { return y + ySize/2; }
+
+    public int getGridX() { return getCenterX()/ 80; }
+    public int getGridY() { return getCenterY()/ 80; }
 
     // キャラクターの上端のｙ座標を取得する
     public int getTop() {
@@ -101,6 +107,9 @@ public class GameCharacter {
     public boolean overlapX(GameCharacter target) {
         return !isOnRight(target) && !isOnLeft(target);
     }
+    public boolean overlapXCenter(GameCharacter target) {
+        return !isOnRight(target) && !isOnLeft(target);
+    }
 
     // 縦方向で重なっていないか判定する
     public boolean overlapY(GameCharacter target) {
@@ -110,6 +119,9 @@ public class GameCharacter {
     // 衝突していないか判定する
     public boolean overlap(GameCharacter target) {
         return overlapX(target) && overlapY(target);
+    }
+    public boolean overlapCenter(GameCharacter target) {
+        return overlapXCenter(target) && overlapYCenter(target);
     }
 
     public boolean fullOverlap(GameCharacter target){

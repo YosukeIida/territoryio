@@ -4,13 +4,14 @@ import com.example.territoryio.controller.BackgroundGrid;
 
 public class Player extends GameCharacter {
 
-    public Player (int x, int y) {
+    public Player (int x, int y, int id) {
         this.x=x;
         this.y=y;
         this.xSize=80;
         this.ySize=80;
         this.xSpeed=0;
         this.ySpeed=3;
+        this.id=id;
     }
     // キャラクターの進行方向 0:上, 1:左, 2:下, 3:右
     private int direction = 0;
