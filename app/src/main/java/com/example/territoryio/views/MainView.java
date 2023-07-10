@@ -91,6 +91,8 @@ public class MainView extends BaseView {
 
 
         // playerを表示
+
+
         drawPlayer(player);
 
     }
