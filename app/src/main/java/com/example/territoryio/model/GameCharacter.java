@@ -108,12 +108,15 @@ public class GameCharacter {
         return !isOnRight(target) && !isOnLeft(target);
     }
     public boolean overlapXCenter(GameCharacter target) {
-        return !isOnRight(target) && !isOnLeft(target);
+        return (target.getLeft()+target.getRight())/2 > getLeft() && (target.getLeft()+target.getRight())/2 <= getRight();
     }
 
     // 縦方向で重なっていないか判定する
     public boolean overlapY(GameCharacter target) {
         return !isOnTop(target) && !isOnBottom(target);
+    }
+    public boolean overlapYCenter(GameCharacter target) {
+        return (target.getBottom()+target.getTop())/2 > getBottom() && (target.getBottom()+target.getTop())/2 <= getTop();
     }
 
     // 衝突していないか判定する

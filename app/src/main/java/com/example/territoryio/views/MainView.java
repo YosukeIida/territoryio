@@ -15,6 +15,7 @@ import com.example.territoryio.R;
 import com.example.territoryio.helpers.BaseView;
 import com.example.territoryio.model.GameCharacter;
 import com.example.territoryio.model.Player;
+import com.example.territoryio.model.Tile;
 import com.example.territoryio.model.World;
 
 
@@ -85,9 +86,11 @@ public class MainView extends BaseView {
         // 背景を表示
         drawImage(0, 0, World.WIDTH, World.HEIGHT, backGroundImage, imageView);
 
+        world.getTiles().forEach(x -> drawTile(x));
+
+
+
         // playerを表示
-
-
         drawPlayer(player);
 
     }
@@ -116,6 +119,23 @@ public class MainView extends BaseView {
 //        Bitmap playerImage = playerImage;
         drawCharacter(player, playerImage);
 
+    }
+
+    private void drawTile(Tile tile) {
+        ImageView imageView = imageViewBuilder.getImageView();
+        int x=tile.getX();
+        int y=tile.getY();
+        int xSize=tile.getxSize();
+        int ySize=tile.getySize();
+        int state=tile.getState();
+        switch (state) {
+            case 0:
+//                imageView.setVisibility(GONE);
+                break;
+            case 1:
+                drawImage(x, y, xSize, ySize, tileLightBlueImage, imageView);
+                break;
+        }
     }
 }
 

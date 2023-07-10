@@ -10,7 +10,7 @@ public class Player extends GameCharacter {
         this.xSize=80;
         this.ySize=80;
         this.xSpeed=0;
-        this.ySpeed=3;
+        this.ySpeed=8;
         this.id=id;
     }
     // キャラクターの進行方向 0:上, 1:左, 2:下, 3:右
@@ -28,18 +28,18 @@ public class Player extends GameCharacter {
         switch (direction) {
             case 0:
                 xSpeed=0;
-                ySpeed=3;
+                ySpeed=8;
                 break;
             case 1:
-                xSpeed=-3;
+                xSpeed=-8;
                 ySpeed=0;
                 break;
             case 2:
                 xSpeed=0;
-                ySpeed=-3;
+                ySpeed=-8;
                 break;
             case 3:
-                xSpeed=3;
+                xSpeed=8;
                 ySpeed=0;
                 break;
         }

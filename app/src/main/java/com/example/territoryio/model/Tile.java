@@ -30,7 +30,9 @@ public class Tile extends GameCharacter {
 
 
     public void move() {
-        if ( overlap())
+        if ( overlapCenter(player)) {
+            state = 1;
+        }
 
 
     }
