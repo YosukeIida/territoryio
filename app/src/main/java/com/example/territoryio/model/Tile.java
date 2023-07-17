@@ -26,17 +26,5 @@ public class Tile extends GameCharacter {
     public void setState(int state) {
         this.state = state;
     }
-    public void setPlayer(Player player) { this.player = player; }
-
-
-    public void move() {
-        if ( overlapCenter(player)) {
-            state = 1;
-        }
-
-
-    }
-
-
 
 }

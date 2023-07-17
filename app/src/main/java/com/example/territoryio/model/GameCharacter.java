@@ -11,7 +11,8 @@ public class GameCharacter {
     protected int ySize = 0;
     protected int xSpeed = 0;
     protected int ySpeed = 0;
-    protected int id = 0;
+    protected int idLine = 0;
+    protected int idArea = 0;
     protected boolean activeFlag = true;
 
     protected List<GameCharacter> xMaxLimits=new LinkedList<GameCharacter>();

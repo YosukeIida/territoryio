@@ -50,6 +50,7 @@ public class MainActivity extends BaseActivity {
                 touchDisplay.setUpX(event.getX());
                 touchDisplay.setUpY(event.getY());
                 world.getPlayer().changeDirection(touchDisplay.getDirection());
+
                 break;
         }
         return true;

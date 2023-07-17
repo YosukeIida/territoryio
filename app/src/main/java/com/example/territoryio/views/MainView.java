@@ -2,11 +2,7 @@ package com.example.territoryio.views;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -35,6 +31,7 @@ public class MainView extends BaseView {
     Bitmap backGroundImage;
     Bitmap playerImage;
     Bitmap tileLightBlueImage;
+    Bitmap tileBlueImage;
 
     // ビュー用変数
     ImageViewBuilder imageViewBuilder;
@@ -48,6 +45,7 @@ public class MainView extends BaseView {
         backGroundImage = loadImage(R.drawable.background);
         playerImage = loadImage(R.drawable.character_monster_slime_red);
         tileLightBlueImage = loadImage(R.drawable.tile_lightblue);
+        tileBlueImage = loadImage(R.drawable.tile_blue);
 
 
         // ビューの生成・登録
@@ -137,6 +135,10 @@ public class MainView extends BaseView {
             case 1:
                 drawImage(x, y, xSize, ySize, tileLightBlueImage, imageView);
                 break;
+            case 2:
+                drawImage(x, y, xSize, ySize, tileBlueImage, imageView);
+                break;
+
         }
     }
 }

@@ -30,7 +30,7 @@ public class World {
         backgroundGrid = new BackgroundGrid();
         for (int i=-1; i<=5; i++) {
             for (int j=-1; j<=5; j++) {
-                backgroundGrid.setCharacterPosition(player.getGridX()+i,player.getGridY()+j, 1);
+                backgroundGrid.setCharacterPosition(player.getGridX()+i,player.getGridY()+j, player.idArea);
             }
         }
 
@@ -44,25 +44,86 @@ public class World {
 
 
 
-        // モデルの接続
-        for (Tile tile : tiles) {
-            tile.setPlayer(player);
-        }
+//        // モデルの接続
+//        for (Tile tile : tiles) {
+//            tile.setPlayer(player);
+//        }
 
     }
 
     public void move() {
         // オブジェクトの更新
         player.move();
-        backgroundGrid.move();
-        tiles.forEach(x -> x.move());
+//        backgroundGrid.move();
+//        tiles.forEach(x -> x.move());
 
-        backgroundGrid.setCharacterPosition(player.getGridX(), player.getGridY(),player.id);
+        // playerがエリアの外の時Lineを引く
+        if (backgroundGrid.getGrid()[player.getGridX()][player.getGridY()] != player.idArea) {
+            backgroundGrid.setCharacterPosition(player.getGridX(), player.getGridY(), player.idLine);
+            if (player.isInArea()) {
+                player.xLineStart = player.getGridX();
+                player.yLineStart = player.getGridY();
+                player.directionLineStart = player.getDirection();
+                player.setInArea(false);
+                System.out.println("出ていった");
+                System.out.println(player.directionLineStart);
+            }
+        } else {
+            if (!player.isInArea()) {
+                System.out.println("戻ってきた！！");
+                System.out.println(player.xLineStart);
+                System.out.println(player.yLineStart);
+
+                // 出発した方向が上下方向か
+                if ( player.getDirection() == 0 || player.getDirection() == 2) {
+                    if (player.getGridX() > player.xLineStart) {
+                        player.xLineStart += 1;
+                    } else {
+                        player.xLineStart -= 1;
+                    }
+                } else if (player.getGridY() > player.yLineStart) {
+                    player.yLineStart += 1;
+                } else {
+                    player.yLineStart -= 1;
+                }
+                for (int i=0; i<GRID_X; i++) {
+                    for (int j=0; j<GRID_Y; j++) {
+                        if (backgroundGrid.getGrid()[i][j] == player.getIdLine()) {
+                            backgroundGrid.setCharacterPosition(i, j, -1);
+                        }
+                    }
+                }
+                System.out.println(player.xLineStart);
+                System.out.println(player.yLineStart);
+
+                backgroundGrid.fillArea(player, player.xLineStart, player.yLineStart);
+                for (int i=0; i<World.GRID_X; i++) {
+                    for (int j = 0; j < World.GRID_Y; j++) {
+                        System.out.print(backgroundGrid.getGrid()[i][j]);
+                    }
+                    System.out.println("");
+                }
+                for (int i=0; i<GRID_X; i++) {
+                    for (int j=0; j<GRID_Y; j++) {
+                        if (backgroundGrid.getGrid()[i][j] == -1) {
+                            backgroundGrid.setCharacterPosition(i, j, player.idArea);
+                        }
+                    }
+                }
+            }
+            player.setInArea(true);
+        }
+
+        // tileの色を決める
         for(int i=0; i<GRID_X; i++) {
             for(int j=0; j<GRID_Y; j++) {
-                if (backgroundGrid.getGrid()[i][j] == 1) {
-                    tiles.get(i*GRID_X+j).setState(1);
+                if (backgroundGrid.getGrid()[i][j] == player.idLine) {
+                    tiles.get(i*GRID_X+j).setState(player.idLine);
                 }
+                if (backgroundGrid.getGrid()[i][j] == player.idArea) {
+                    tiles.get(i*GRID_X+j).setState(player.idArea);
+                }
+
             }
         }
 
