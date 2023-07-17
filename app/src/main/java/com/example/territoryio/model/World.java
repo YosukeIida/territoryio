@@ -75,16 +75,18 @@ public class World {
                 System.out.println(player.yLineStart);
 
                 // 出発した方向が上下方向か
-                if ( player.getDirection() == 0 || player.getDirection() == 2) {
+                if ( player.directionLineStart == 0 || player.directionLineStart == 2) {
                     if (player.getGridX() > player.xLineStart) {
                         player.xLineStart += 1;
                     } else {
                         player.xLineStart -= 1;
                     }
-                } else if (player.getGridY() > player.yLineStart) {
-                    player.yLineStart += 1;
                 } else {
-                    player.yLineStart -= 1;
+                    if (player.getGridY() > player.yLineStart) {
+                        player.yLineStart += 1;
+                    } else {
+                        player.yLineStart -= 1;
+                    }
                 }
                 for (int i=0; i<GRID_X; i++) {
                     for (int j=0; j<GRID_Y; j++) {
