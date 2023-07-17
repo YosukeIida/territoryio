@@ -35,6 +35,14 @@ public class BackgroundGrid{
         }
         System.out.println("aaa");
 
+//        if (grid[x][y] == -1) {
+//
+//        }
+//      領域から外に出たグリッドと入ってきたグリッドが隣り合わせの時，fillAreaができない
+//          -> playerが通った座標を記録するvisitedを作った
+//          -> visitedの座標をもとに塗りつぶしをするようにfillAreaを変更する必要がある
+//          -> 出たグリッドと入ってきたグリッドが隣り合わせの時，最初から最後まで探索する
+
         if (!(grid[x+1][y] == -1 || grid[x+1][y] == player.getIdArea())) {
             System.out.println("b");
             fillArea(player, x+1, y);

@@ -1,6 +1,11 @@
 package com.example.territoryio.model;
 
+import android.graphics.Point;
+
 import com.example.territoryio.controller.BackgroundGrid;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Player extends GameCharacter {
 
@@ -21,6 +26,7 @@ public class Player extends GameCharacter {
     public int xLineStart = 0;
     public int yLineStart = 0;
     public int directionLineStart = 0;
+    public List<Point> visited_list = new ArrayList<Point>();
 
    // キャラクターの中央座標
     public int getCenterX() { return x + xSize/2; }

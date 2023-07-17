@@ -1,5 +1,6 @@
 package com.example.territoryio.model;
 
+import android.graphics.Point;
 import android.util.Log;
 
 import com.example.territoryio.controller.BackgroundGrid;
@@ -60,6 +61,14 @@ public class World {
         // playerがエリアの外の時Lineを引く
         if (backgroundGrid.getGrid()[player.getGridX()][player.getGridY()] != player.idArea) {
             backgroundGrid.setCharacterPosition(player.getGridX(), player.getGridY(), player.idLine);
+            Point point = new Point(player.getGridX(), player.getGridY());
+            if (player.visited_list.size() == 0) {
+                player.visited_list.add(point);
+            }
+            if (!(player.visited_list.get(player.visited_list.size()-1)).equals(point)) {
+                player.visited_list.add(point);
+            }
+
             if (player.isInArea()) {
                 player.xLineStart = player.getGridX();
                 player.yLineStart = player.getGridY();
