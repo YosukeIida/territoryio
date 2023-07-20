@@ -32,6 +32,12 @@ public class MainView extends BaseView {
     Bitmap playerImage;
     Bitmap tileLightBlueImage;
     Bitmap tileBlueImage;
+    Bitmap enemy1Image;
+    Bitmap enemy1ImageLine;
+    Bitmap enemy1ImageArea;
+    Bitmap enemy2Image;
+    Bitmap enemy2ImageLine;
+    Bitmap enemy2ImageArea;
 
     // ビュー用変数
     ImageViewBuilder imageViewBuilder;
@@ -46,6 +52,12 @@ public class MainView extends BaseView {
         playerImage = loadImage(R.drawable.character_monster_slime_red);
         tileLightBlueImage = loadImage(R.drawable.tile_lightblue);
         tileBlueImage = loadImage(R.drawable.tile_blue);
+        enemy1Image = loadImage(R.drawable.character_monster_slime_green);
+        enemy1ImageLine = loadImage(R.drawable.maptile_sogen_02);
+        enemy1ImageLine = loadImage(R.drawable.maptile_sogen_01);
+        enemy2Image = loadImage(R.drawable.character_monster_slime_purple);
+        enemy2ImageLine = loadImage(R.drawable.maptile_sabaku);
+        enemy2ImageLine = loadImage(R.drawable.maptile_yogan);
 
 
         // ビューの生成・登録
@@ -59,6 +71,7 @@ public class MainView extends BaseView {
         // スクロール
 
         Player player = world.getPlayer();
+
 
         if (player.getX() < WINDOW_HEIGHT/2) {
             canvasBaseX = 0;
@@ -86,12 +99,16 @@ public class MainView extends BaseView {
 
         world.getTiles().forEach(x -> drawTile(x));
 
+        drawCharacter(world.getEnemies().get(0), enemy1Image);
+        drawCharacter(world.getEnemies().get(1), enemy2Image);
+
 
 
         // playerを表示
-
-
         drawPlayer(player);
+
+
+
 
     }
 

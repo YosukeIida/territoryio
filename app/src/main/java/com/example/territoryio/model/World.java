@@ -14,24 +14,34 @@ public class World {
     public static final int HEIGHT = 2000;
     public static final int GRID_X = 25;
     public static final int GRID_Y = 25;
+    public static final int ENEMY_NUM = 2;
 
     // モデル
     Player player;
+    List<Enemy> enemies;
     BackgroundGrid backgroundGrid;
     List<Tile> tiles;
 
 
 
-//    private int grid[][] = new int[GRID_X][GRID_Y];
 
 
     public World() {
         // オブジェクトの生成(モデルの取得)
         player = new Player(100, 100, 1);
+
+        enemies = new LinkedList<Enemy>();
+        enemies.add(new Enemy(500, 100, 2));
+        enemies.add(new Enemy(1900, 300, 3));
+
+
         backgroundGrid = new BackgroundGrid();
-        for (int i=-1; i<=5; i++) {
-            for (int j=-1; j<=5; j++) {
+        for (int i=-1; i<=1; i++) {
+            for (int j=-1; j<=1; j++) {
                 backgroundGrid.setCharacterPosition(player.getGridX()+i,player.getGridY()+j, player.idArea);
+//                for (int k=0; k<enemies.size(); k++) {
+//                    backgroundGrid.setCharacterPosition(enemies.get(k).getGridX()+i, enemies.get(k).getGridY()+j, enemies.get(k).idArea);
+//                }
             }
         }
 
@@ -43,20 +53,14 @@ public class World {
             }
         }
 
-
-
-//        // モデルの接続
-//        for (Tile tile : tiles) {
-//            tile.setPlayer(player);
-//        }
-
     }
 
     public void move() {
         // オブジェクトの更新
         player.move();
-//        backgroundGrid.move();
-//        tiles.forEach(x -> x.move());
+
+//        enemies.forEach(x-> x.move());
+
 
         // playerがエリアの外の時Lineを引く
         if (backgroundGrid.getGrid()[player.getGridX()][player.getGridY()] != player.idArea) {
@@ -121,6 +125,7 @@ public class World {
                         }
                     }
                 }
+                player.visited_list.clear();
             }
             player.setInArea(true);
         }
@@ -153,6 +158,8 @@ public class World {
 
 
     public Player getPlayer() { return player; }
+
+    public List<Enemy> getEnemies() { return enemies; }
 
     public List<Tile> getTiles() {
         return tiles;

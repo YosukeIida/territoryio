@@ -12,7 +12,6 @@ public class BackgroundGrid{
 
     private int grid[][] = new int[World.GRID_X][World.GRID_Y];
 
-
     // getter
     public int[][] getGrid() {
         return grid;
@@ -25,19 +24,10 @@ public class BackgroundGrid{
 //    public void fillArea(int xStart, int yStart, int xEnd, int yEnd, int direction, int id) {
     public void fillArea(Player player, int x, int y) {
 
-        grid[x][y] = -1;
-
-        for (int i=0; i<World.GRID_X; i++) {
-            for (int j = 0; j < World.GRID_Y; j++) {
-                System.out.print(grid[i][j]);
-            }
-            System.out.println("");
+        if (grid[x][y] == -1) {
+            return;
         }
-        System.out.println("aaa");
-
-//        if (grid[x][y] == -1) {
-//
-//        }
+        grid[x][y] = -1;
 //      領域から外に出たグリッドと入ってきたグリッドが隣り合わせの時，fillAreaができない
 //          -> playerが通った座標を記録するvisitedを作った
 //          -> visitedの座標をもとに塗りつぶしをするようにfillAreaを変更する必要がある
