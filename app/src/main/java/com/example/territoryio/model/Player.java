@@ -21,6 +21,7 @@ public class Player extends GameCharacter {
     }
     // キャラクターの進行方向 0:上, 1:左, 2:下, 3:右
     private int direction = 0;
+    private int speedTimes = 1;
     private boolean inArea = true;
 
     public int xLineStart = 0;
@@ -48,23 +49,29 @@ public class Player extends GameCharacter {
         this.direction = direction;
         switch (direction) {
             case 0:
-                xSpeed=0;
-                ySpeed=8;
+                xSpeed=speedTimes*0;
+                ySpeed=speedTimes*8;
                 break;
             case 1:
-                xSpeed=-8;
-                ySpeed=0;
+                xSpeed=speedTimes* -8;
+                ySpeed=speedTimes* 0;
                 break;
             case 2:
-                xSpeed=0;
-                ySpeed=-8;
+                xSpeed=speedTimes* 0;
+                ySpeed=speedTimes* -8;
                 break;
             case 3:
-                xSpeed=8;
-                ySpeed=0;
+                xSpeed=speedTimes* 8;
+                ySpeed=speedTimes* 0;
                 break;
         }
 
+    }
+    public void upSpeed() {
+        speedTimes=2;
+    }
+    public void downSpeed(){
+        speedTimes=1;
     }
 
     public void move() {

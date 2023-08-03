@@ -17,7 +17,7 @@ public class Enemy extends GameCharacter{
         this.idLine=id*2 -1;
         this.idArea=id*2;
     }
-
+    private int cnt = 0;
     private int direction = 0;
     private boolean inArea = true;
 
@@ -79,6 +79,23 @@ public class Enemy extends GameCharacter{
         } else if (y > World.HEIGHT - ySize) {
             y = World.HEIGHT - ySize;
         }
+
+//        cnt++;
+//        if (direction==0 && cnt %100 == 0) {
+//            changeDirection(3);
+//        }
+//        else if (direction==3 && cnt %100 == 0) {
+//            changeDirection(2);
+//        }
+//        else if (direction==2 && cnt %100 == 0) {
+//            changeDirection(1);
+//        }
+//        else if (direction==1 && cnt %100 == 0) {
+//            if (cnt %800 == 0) {
+//                changeDirection(3);
+//            }
+//            changeDirection(0);
+//        }
 
 
 

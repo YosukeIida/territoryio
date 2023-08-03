@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MotionEvent;
 
+import com.example.territoryio.controller.DownTimer;
 import com.example.territoryio.controller.TouchDisplay;
 import com.example.territoryio.helpers.BaseActivity;
 import com.example.territoryio.model.World;
@@ -19,6 +20,8 @@ public class MainActivity extends BaseActivity {
 
     TouchDisplay touchDisplay;
 
+    DownTimer downTimer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         gravityEnabled = true;
@@ -31,12 +34,19 @@ public class MainActivity extends BaseActivity {
         mainView = new MainView(this);
         touchDisplay = new TouchDisplay();
 
+
     }
 
     public void update() {
         world.move();
         mainView.draw(world);
 
+    }
+
+    public void retry() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     // イベントリスナー

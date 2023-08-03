@@ -41,6 +41,10 @@ public class GameCharacter {
         return ySize;
     }
 
+    public int getIdLine() { return idLine; }
+
+    public int getIdArea() { return idArea; }
+
     public boolean isActive() {
         return activeFlag;
     }
@@ -216,5 +220,6 @@ public class GameCharacter {
     public void move() {
 
     }
+
 
 }

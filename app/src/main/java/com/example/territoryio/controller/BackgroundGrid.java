@@ -2,6 +2,7 @@ package com.example.territoryio.controller;
 
 import android.util.Log;
 
+import com.example.territoryio.model.GameCharacter;
 import com.example.territoryio.model.Player;
 import com.example.territoryio.model.World;
 
@@ -22,7 +23,7 @@ public class BackgroundGrid{
     public void setCharacterPosition(int x, int y, int idLine) { grid[x][y] = idLine; }
 
 //    public void fillArea(int xStart, int yStart, int xEnd, int yEnd, int direction, int id) {
-    public void fillArea(Player player, int x, int y) {
+    public void fillArea(GameCharacter gameCharacter, int x, int y) {
 
         if (grid[x][y] == -1) {
             return;
@@ -33,18 +34,18 @@ public class BackgroundGrid{
 //          -> visitedの座標をもとに塗りつぶしをするようにfillAreaを変更する必要がある
 //          -> 出たグリッドと入ってきたグリッドが隣り合わせの時，最初から最後まで探索する
 
-        if (!(grid[x+1][y] == -1 || grid[x+1][y] == player.getIdArea())) {
+        if (!(grid[x+1][y] == -1 || grid[x+1][y] == gameCharacter.getIdArea())) {
             System.out.println("b");
-            fillArea(player, x+1, y);
+            fillArea(gameCharacter, x+1, y);
         }
-        if (!(grid[x][y+1] == -1 || grid[x][y+1] == player.getIdArea())) {
-            fillArea(player, x, y+1);
+        if (!(grid[x][y+1] == -1 || grid[x][y+1] == gameCharacter.getIdArea())) {
+            fillArea(gameCharacter, x, y+1);
         }
-        if (!(grid[x-1][y] == -1 || grid[x-1][y] == player.getIdArea())) {
-            fillArea(player, x-1, y);
+        if (!(grid[x-1][y] == -1 || grid[x-1][y] == gameCharacter.getIdArea())) {
+            fillArea(gameCharacter, x-1, y);
         }
-        if (!(grid[x][y-1] == -1 || grid[x][y-1] == player.getIdArea())) {
-            fillArea(player, x, y-1);
+        if (!(grid[x][y-1] == -1 || grid[x][y-1] == gameCharacter.getIdArea())) {
+            fillArea(gameCharacter, x, y-1);
         }
     }
 
